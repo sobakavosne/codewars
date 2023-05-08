@@ -11,17 +11,12 @@
 // Empty list is considered to have zero greatest sum. Note that 
 // the empty list or array is also a valid sublist/subarray.
 
-function maxSequence([a, b, ...tail]: number[]) {
-  let stack = [];
-
-  console.log(tail);
-
-  if (tail) {    
-    stack.concat([a + b]).concat(maxSequence([b, ...tail]));
-  } else {
-    return stack;
-  }
-}
+const maxSequence =
+  (a: number[], sum = 0) =>
+    a.reduce(
+      (max, v) => Math.max(sum = Math.max(sum + v, 0), max),
+      0
+    );
 
 console.log(
   'maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4]);: ',
